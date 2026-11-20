@@ -2,6 +2,7 @@ package com.example.pertemuan9.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle // TAMBAHAN
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -16,6 +17,20 @@ object PenyediaViewModel {
 
         initializer {
             EntryViewModel(aplikasiSiswa().container.repositoriSiswa)
+        }
+
+        initializer { // TAMBAHAN
+            DetailViewModel(
+                this.createSavedStateHandle(),
+                aplikasiSiswa().container.repositoriSiswa
+            )
+        }
+
+        initializer { // TAMBAHAN
+            EditViewModel(
+                this.createSavedStateHandle(),
+                aplikasiSiswa().container.repositoriSiswa
+            )
         }
     }
 }
